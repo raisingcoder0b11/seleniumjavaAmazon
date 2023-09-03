@@ -83,5 +83,6 @@ public class AmazonHomePage {
    }
    public void printTechSpecification(){
        System.out.println(techSpecification.getText());
+       webDriver.quit();
    }
 }
