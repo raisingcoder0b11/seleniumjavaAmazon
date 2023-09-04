@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/Features",
         tags="@AmazonProductSearch",
-        //plugin = {"pretty", "summary"})
+        monochrome = true,
         plugin = {"json:target/destination/cucumber.json","html:target/cucumber/report.html"})
 
 

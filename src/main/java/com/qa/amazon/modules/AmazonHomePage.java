@@ -1,10 +1,8 @@
 package com.qa.amazon.modules;
-import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -13,8 +11,8 @@ public class AmazonHomePage {
     @FindBy(css = "#twotabsearchtextbox")
     WebElement searchBar;
 
-//   @FindBy(xpath = "//div[@id=\"brandsRefinements\"]//div[@class=\"a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left\"]")
-//   WebElement brandFilters;
+   @FindBy(xpath = "//div[@id=\"brandsRefinements\"]//div[@class=\"a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left\"]")
+   WebElement brandFilters;
 
    @FindBy(css = ".a-star-medium-3")
     WebElement starRatingFilter;
@@ -68,7 +66,7 @@ public class AmazonHomePage {
            String child_window=I1.next();
            if(!parentWindow.equals(child_window)){
                webDriver.switchTo().window(child_window);
-               System.out.println(webDriver.switchTo().window(child_window).getTitle());
+//               System.out.println(webDriver.switchTo().window(child_window).getTitle());
            }
 
        }
@@ -81,8 +79,10 @@ public class AmazonHomePage {
    public void scrollUptoProductInformation(){
         js.executeScript("arguments[0].scrollIntoView(true)",productInformation);
    }
+
    public void printTechSpecification(){
-       System.out.println(techSpecification.getText());
+       System.out.println("Tech Specification :"+techSpecification.getText());
        webDriver.quit();
    }
+
 }
