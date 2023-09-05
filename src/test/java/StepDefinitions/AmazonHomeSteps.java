@@ -9,9 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.io.IOException;
-
 import static Properties.PropertyReader.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -20,16 +18,13 @@ public class AmazonHomeSteps extends PageObject{
 
     AmazonHomePage amazonHomePage;
 
-//    @Managed(driver = "chrome")
-//    WebDriver driver;
+    @Managed(driver = "chrome")
+    WebDriver driver;
 
     @Given("User is on the Amazon.in website")
     public void user_is_on_the_amazon_in_website() throws IOException {
         System.setProperty("webdriver.chrome.driver","/Users/sakthilavanya/Desktop/amazon/src/main/resources/chromedriver");
         WebDriver driver = new ChromeDriver();
-//        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--headless"); // Configure Chrome to run in headless mode
-//        driver = new ChromeDriver(chromeOptions);
         driver.get(getUrl());
         driver.manage().window().maximize();
         String actualURL = driver.getCurrentUrl();
@@ -80,5 +75,12 @@ public class AmazonHomeSteps extends PageObject{
     public void userViewsTheTechnicalSpecifications() {
        amazonHomePage.printTechSpecification();
         System.out.println("Product specification printed!");
+    }
+
+    //         Configure Chrome to run in headless mode
+    public void runInHeadless(){
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver(chromeOptions);
     }
 }

@@ -26,6 +26,9 @@ public class AmazonHomePage {
     @FindBy(xpath = "(//table[@id='productDetails_techSpec_section_1']//td)[2]")
     WebElement techSpecification;
 
+    @FindBy(xpath = "//span[@id='productTitle']")
+    WebElement productTitle;
+
    WebDriver webDriver;
    JavascriptExecutor js;
 
@@ -40,7 +43,8 @@ public class AmazonHomePage {
    }
 
    public void selectBrandFilters(int i) throws InterruptedException {
-           WebElement element = webDriver.findElement(By.xpath("(//div[@id=\"brandsRefinements\"]//div[@class=\"a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left\"])"+"["+i+"]"));
+           String dynamicPath = "(//div[@id=\"brandsRefinements\"]//div[@class=\"a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left\"])"+"["+i+"]";
+           WebElement element = webDriver.findElement(By.xpath(dynamicPath));
            js.executeScript("arguments[0].click()",element);
    }
 
@@ -58,22 +62,24 @@ public class AmazonHomePage {
        return firstResult.getText();
    }
    public void switchToChildWindow(){
+        //Here parentWindow is AmazonHomePage
        String parentWindow = webDriver.getWindowHandle();
        Set<String> s= webDriver.getWindowHandles();
        Iterator<String> I1= s.iterator();
        while(I1.hasNext())
        {
+           //Here ChildWindow is Search Result Page
            String child_window=I1.next();
            if(!parentWindow.equals(child_window)){
                webDriver.switchTo().window(child_window);
-//               System.out.println(webDriver.switchTo().window(child_window).getTitle());
+               System.out.println("Title :"+webDriver.switchTo().window(child_window).getTitle());
            }
 
        }
    }
 
    public String productNameInDetail(){
-       return webDriver.findElement(By.xpath("//span[@id='productTitle']")).getText();
+       return productTitle.getText();
    }
 
    public void scrollUptoProductInformation(){
