@@ -59,7 +59,7 @@ public class AmazonHomeSteps extends PageObject{
 
     @And("User selects first two filters under Brands")
     public void userSelectsFirstTwoFiltersUnderBrands() throws InterruptedException{
-        for (int i=1;i<=2;i++){
+        for (int i=2;i<=3;i++){
             amazonHomePage.selectBrandFilters(i);
         }
         System.out.println("User selects brand filters");

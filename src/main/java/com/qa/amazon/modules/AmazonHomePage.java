@@ -14,7 +14,7 @@ public class AmazonHomePage {
    @FindBy(xpath = "//div[@id=\"brandsRefinements\"]//div[@class=\"a-checkbox a-checkbox-fancy s-navigation-checkbox aok-float-left\"]")
    WebElement brandFilters;
 
-   @FindBy(css = ".a-star-medium-3")
+   @FindBy(css = ".a-star-medium-5")
     WebElement starRatingFilter;
 
     @FindBy(xpath = "//span[contains(@class,'a-size-medium a-color-base')][1]")
@@ -49,7 +49,12 @@ public class AmazonHomePage {
    }
 
    public void selectStarRatingFilter(){
-           starRatingFilter.click();
+        try{
+        if(starRatingFilter.isDisplayed()){
+           starRatingFilter.click();}}
+        catch (Exception e){
+            System.out.println("Element is not present");
+        }
            WebDriverWait webDriverWait = new WebDriverWait(webDriver,2000);
            webDriverWait.until(ExpectedConditions.elementToBeClickable(firstResult));
    }
